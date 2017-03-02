@@ -122,17 +122,18 @@ public class TrieImpl implements Trie
     }
 
     private class Vertex {
-        final int CHAR_POWER = 2*256;
+        private final int CHAR_POWER = 2*256;
+        private final Vertex[] next;
+        private boolean isTerminal;
+        private final Vertex parent;
+        private int subTreeSize;
+
         Vertex(Vertex parent) {
             isTerminal = false;
             next = new Vertex[CHAR_POWER];
             this.parent = parent;
             subTreeSize = 0;
         }
-        final Vertex[] next;
-        boolean isTerminal;
-        final Vertex parent;
-        int subTreeSize;
     }
 
     private Vertex root;
