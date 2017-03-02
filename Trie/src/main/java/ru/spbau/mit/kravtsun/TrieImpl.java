@@ -2,6 +2,8 @@ package ru.spbau.mit.kravtsun;
 
 public class TrieImpl implements Trie
 {
+    private Vertex root;
+
     public TrieImpl() {
         root = null;
     }
@@ -135,6 +137,4 @@ public class TrieImpl implements Trie
             subTreeSize = 0;
         }
     }
-
-    private Vertex root;
 }

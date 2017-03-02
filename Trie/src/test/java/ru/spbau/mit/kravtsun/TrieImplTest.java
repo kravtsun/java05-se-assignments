@@ -115,7 +115,8 @@ public class TrieImplTest {
         assertTrue(trie.size() == 1);
         assertFalse(trie.add(newString));
         assertTrue(trie.size() == 1);
-        String suffix = newString.substring(1), prefix = newString.substring(0, newString.length()-1);
+        String suffix = newString.substring(1);
+        String prefix = newString.substring(0, newString.length()-1);
         assertFalse(trie.contains(suffix));
         assertFalse(trie.contains(prefix));
         assert(trie.size() == 1);
