@@ -1,3 +1,5 @@
+package ru.spbau.mit.kravtsun;
+
 public interface Trie {
 
     /**
