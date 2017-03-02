@@ -139,7 +139,8 @@ public class TrieImplTest {
         assertTrue(trie.add(newString));
         assertFalse(trie.add(newString));
 
-        String suffix = newString.substring(1), prefix = newString.substring(0, newString.length()-1);
+        String suffix = newString.substring(1);
+        String prefix = newString.substring(0, newString.length()-1);
 
         int prefixTestCount = randomizer.nextInt(10);
         for (int i = 10; i < prefixTestCount; ++i) {
