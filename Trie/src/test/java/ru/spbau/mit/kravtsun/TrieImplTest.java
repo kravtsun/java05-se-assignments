@@ -70,10 +70,10 @@ public class TrieImplTest {
         ArrayList<String> alreadyAdded = new ArrayList<>();
         for (int i = 0; i < TESTS_COUNT; i++) {
             String newString = randomString();
-            assertTrue(trie.size() == alreadyAdded.size());
+            assertEquals(trie.size(), alreadyAdded.size());
             if (alreadyAdded.contains(newString)) {
                 assertFalse(trie.add(newString));
-                assertTrue(trie.size() == alreadyAdded.size());
+                assertEquals(trie.size(), alreadyAdded.size());
             } else {
                 assertTrue(trie.add(newString));
                 alreadyAdded.add(newString);
@@ -87,7 +87,7 @@ public class TrieImplTest {
 
         for (int i = 0; i < TESTS_COUNT; i++) {
             String s = randomString();
-            assertTrue(alreadyAdded.contains(s) == trie.contains(s));
+            assertEquals(alreadyAdded.contains(s), trie.contains(s));
         }
     }
 
@@ -95,11 +95,11 @@ public class TrieImplTest {
     public void trieSpecificCases() {
         TrieImpl trie = new TrieImpl();
         String newString = randomString();
-        assertTrue(trie.size() == 0);
+        assertEquals(trie.size(), 0);
         assertTrue(trie.add(newString));
-        assertTrue(trie.size() == 1);
+        assertEquals(trie.size(), 1);
         assertFalse(trie.add(newString));
-        assertTrue(trie.size() == 1);
+        assertEquals(trie.size(),1);
         String prefix = newString.substring(0, newString.length()-1);
         assertTrue(trie.add(prefix));
         assertTrue(trie.remove(newString));
@@ -112,18 +112,18 @@ public class TrieImplTest {
         String newString = randomString();
         assertTrue(trie.add(newString));
         assertTrue(trie.contains(newString));
-        assertTrue(trie.size() == 1);
+        assertEquals(trie.size(), 1);
         assertFalse(trie.add(newString));
-        assertTrue(trie.size() == 1);
+        assertEquals(trie.size(), 1);
         String suffix = newString.substring(1);
         String prefix = newString.substring(0, newString.length()-1);
         assertFalse(trie.contains(suffix));
         assertFalse(trie.contains(prefix));
-        assert(trie.size() == 1);
+        assertEquals(trie.size(), 1);
         assertFalse(trie.remove(suffix));
         assertFalse(trie.remove(prefix));
         assertTrue(trie.remove(newString));
-        assertTrue(trie.size() == 0);
+        assertEquals(trie.size(), 0);
         assertFalse(trie.contains(suffix));
         assertFalse(trie.contains(prefix));
         assertFalse(trie.contains(newString));
@@ -146,13 +146,13 @@ public class TrieImplTest {
         int prefixTestCount = randomizer.nextInt(10);
         for (int i = 10; i < prefixTestCount; ++i) {
             String checkPrefix = prefix.substring(0, randomizer.nextInt(prefix.length()));
-            assertTrue(trie.howManyStartsWithPrefix(checkPrefix) == 1);
+            assertEquals(trie.howManyStartsWithPrefix(checkPrefix), 1);
         }
 
-        assert(trie.size() == 1);
+        assertEquals(trie.size(), 1);
         assertFalse(trie.remove(suffix));
         assertFalse(trie.remove(prefix));
         assertTrue(trie.remove(newString));
-        assertTrue(trie.size() == 0);
+        assertEquals(trie.size(), 0);
     }
 }

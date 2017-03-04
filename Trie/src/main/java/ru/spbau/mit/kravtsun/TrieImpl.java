@@ -1,5 +1,7 @@
 package ru.spbau.mit.kravtsun;
 
+import org.jetbrains.annotations.Contract;
+
 public class TrieImpl implements Trie
 {
     private Vertex root;
@@ -8,6 +10,7 @@ public class TrieImpl implements Trie
         root = null;
     }
 
+    @Contract("_, true -> !null")
     private Vertex traverseWord(String element, boolean addIfNotExists) {
         if (root == null) {
             if (addIfNotExists) {
@@ -115,10 +118,6 @@ public class TrieImpl implements Trie
      * @param prefix
      */
     public int howManyStartsWithPrefix(String prefix) {
-        if (prefix.length() == 0) {
-            return root.subTreeSize;
-        }
-
         Vertex current = traverseWord(prefix, false);
         return current == null? 0 : current.subTreeSize;
     }
