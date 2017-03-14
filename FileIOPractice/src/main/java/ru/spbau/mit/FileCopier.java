@@ -14,9 +14,9 @@ public class FileCopier {
         workMatrix(5, args[3]);
     }
 
-    private static void copyContents(String fileFrom, String fileTo) throws IOException {
-        BufferedInputStream fin = new BufferedInputStream(new FileInputStream(fileFrom));
-        BufferedOutputStream fout = new BufferedOutputStream(new FileOutputStream(fileTo));
+    private static void copyContents(String src, String dst) throws IOException {
+        BufferedInputStream fin = new BufferedInputStream(new FileInputStream(src));
+        BufferedOutputStream fout = new BufferedOutputStream(new FileOutputStream(dst));
 
         byte buf[] = new byte[1024];
 
@@ -26,8 +26,6 @@ public class FileCopier {
             fout.flush();
         }
         fout.close();
-//        System.out.println("Unexpected IOException while reading line.");
-//        throw new IOException(e);
     }
 
     private static void workMatrix(int N, String filename) throws IOException {
