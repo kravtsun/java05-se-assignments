@@ -8,14 +8,14 @@ import java.util.Random;
 import static org.junit.Assert.*;
 
 public class TrieImplTest {
-    private final static int MAX_STRING_SIZE = 100;
-    private final static int TESTS_COUNT = 10000;
+    private static final int MAX_STRING_SIZE = 100;
+    private static final int TESTS_COUNT = 10000;
 
-    private final static Random randomizer;
-    private final static String random_symbols;
+    private static final Random RANDOMIZER;
+    private static final String RANDOM_SYMBOLS;
 
     static {
-        randomizer = new Random(1123834521);
+        RANDOMIZER = new Random(1123834521);
 
         StringBuilder sb = new StringBuilder();
         for (char c = 'a'; c <= 'z'; ++c) {
@@ -26,15 +26,15 @@ public class TrieImplTest {
             sb.append(c);
         }
 
-        random_symbols = sb.toString();
+        RANDOM_SYMBOLS = sb.toString();
     }
 
     private static String randomString() {
-        int size = 1 + randomizer.nextInt(MAX_STRING_SIZE);
+        int size = 1 + RANDOMIZER.nextInt(MAX_STRING_SIZE);
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < size; i++) {
-            int nextCharPosition = randomizer.nextInt(random_symbols.length());
-            char nextSymbol = random_symbols.charAt(nextCharPosition);
+            int nextCharPosition = RANDOMIZER.nextInt(RANDOM_SYMBOLS.length());
+            char nextSymbol = RANDOM_SYMBOLS.charAt(nextCharPosition);
             sb.append(nextSymbol);
         }
         return sb.toString();
@@ -42,12 +42,12 @@ public class TrieImplTest {
 
     @Test
     public void testSimple() {
-        TrieImpl TrieImpl = new TrieImpl();
+        TrieImpl trieImpl = new TrieImpl();
 
-        assertTrue(TrieImpl.add("abc"));
-        assertTrue(TrieImpl.contains("abc"));
-        assertEquals(1, TrieImpl.size());
-        assertEquals(1, TrieImpl.howManyStartsWithPrefix("abc"));
+        assertTrue(trieImpl.add("abc"));
+        assertTrue(trieImpl.contains("abc"));
+        assertEquals(1, trieImpl.size());
+        assertEquals(1, trieImpl.howManyStartsWithPrefix("abc"));
     }
 //
 //    public static TrieImpl instance() {
@@ -99,8 +99,8 @@ public class TrieImplTest {
         assertTrue(trie.add(newString));
         assertEquals(trie.size(), 1);
         assertFalse(trie.add(newString));
-        assertEquals(trie.size(),1);
-        String prefix = newString.substring(0, newString.length()-1);
+        assertEquals(trie.size(), 1);
+        String prefix = newString.substring(0, newString.length() - 1);
         assertTrue(trie.add(prefix));
         assertTrue(trie.remove(newString));
         assertTrue(trie.contains(prefix) && !trie.contains(newString));
@@ -116,7 +116,7 @@ public class TrieImplTest {
         assertFalse(trie.add(newString));
         assertEquals(trie.size(), 1);
         String suffix = newString.substring(1);
-        String prefix = newString.substring(0, newString.length()-1);
+        String prefix = newString.substring(0, newString.length() - 1);
         assertFalse(trie.contains(suffix));
         assertFalse(trie.contains(prefix));
         assertEquals(trie.size(), 1);
@@ -141,11 +141,11 @@ public class TrieImplTest {
         assertFalse(trie.add(newString));
 
         String suffix = newString.substring(1);
-        String prefix = newString.substring(0, newString.length()-1);
+        String prefix = newString.substring(0, newString.length() - 1);
 
-        int prefixTestCount = randomizer.nextInt(10);
+        int prefixTestCount = RANDOMIZER.nextInt(10);
         for (int i = 10; i < prefixTestCount; ++i) {
-            String checkPrefix = prefix.substring(0, randomizer.nextInt(prefix.length()));
+            String checkPrefix = prefix.substring(0, RANDOMIZER.nextInt(prefix.length()));
             assertEquals(trie.howManyStartsWithPrefix(checkPrefix), 1);
         }
 

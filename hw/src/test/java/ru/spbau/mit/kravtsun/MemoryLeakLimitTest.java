@@ -1,7 +1,6 @@
 package ru.spbau.mit.kravtsun;
 
 import org.junit.After;
-import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
@@ -72,15 +71,15 @@ public class MemoryLeakLimitTest {
     private void useSmall() {
         if (!Objects.isNull(smallArray)) {
             smallArray[0] = 1;
-            smallArray[SMALL_ARRAY_SIZE-1] = -1;
+            smallArray[SMALL_ARRAY_SIZE - 1] = -1;
         }
     }
 
     private void useBig() {
         if (!Objects.isNull(bigArray)) {
             Random randomizer = new Random();
-            final int N = randomizer.nextInt(100);
-            for (int i = 0; i < N; ++i) {
+            final int fillTimes = randomizer.nextInt(100);
+            for (int i = 0; i < fillTimes; ++i) {
                 int nextIndex = randomizer.nextInt(BIG_ARRAY_SIZE);
                 bigArray[nextIndex] = i;
             }

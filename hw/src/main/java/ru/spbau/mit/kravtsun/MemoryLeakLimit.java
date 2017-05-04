@@ -55,10 +55,10 @@ public class MemoryLeakLimit implements TestRule {
     }
 
     private String errorMessage(long memoryChange) {
-        return "Memory limit exceeded: (expected)" +
-                memoryLimit +
-                " bytes  <  (occupied)" +
-                memoryChange +
-                " bytes.";
+        return "Memory limit exceeded: (expected)"
+                + memoryLimit
+                + " bytes  <  (occupied)"
+                + memoryChange
+                + " bytes.";
     }
 }

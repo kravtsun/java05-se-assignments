@@ -2,8 +2,7 @@ package ru.spbau.mit.kravtsun;
 
 import org.jetbrains.annotations.Contract;
 
-public class TrieImpl implements Trie
-{
+public class TrieImpl implements Trie {
     private Vertex root;
 
     public TrieImpl() {
@@ -91,7 +90,7 @@ public class TrieImpl implements Trie
         }
 
         current.isTerminal = false;
-        for (int i = element.length()-1; i >= 0; --i) {
+        for (int i = element.length() - 1; i >= 0; --i) {
             removeOnEmpty(current, element.charAt(i));
             current = current.parent;
         }
@@ -109,7 +108,7 @@ public class TrieImpl implements Trie
      * Expected complexity: O(1)
      */
     public int size() {
-        return root == null? 0 : root.subTreeSize;
+        return root == null ? 0 : root.subTreeSize;
     }
 
     /**
@@ -119,11 +118,11 @@ public class TrieImpl implements Trie
      */
     public int howManyStartsWithPrefix(String prefix) {
         Vertex current = traverseWord(prefix, false);
-        return current == null? 0 : current.subTreeSize;
+        return current == null ? 0 : current.subTreeSize;
     }
 
     private class Vertex {
-        private final int CHAR_POWER = 2*256;
+        private static final int CHAR_POWER = 2 * 256;
         private final Vertex[] next;
         private boolean isTerminal;
         private final Vertex parent;
